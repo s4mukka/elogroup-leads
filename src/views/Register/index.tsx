@@ -1,23 +1,31 @@
+import { FormEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
 import * as yup from 'yup';
 
 import { Input } from '../../components';
-import useForm from '../../hooks/useForms';
+import { User } from '../../domain/models';
+import { useForm } from '../../hooks';
+import { RegisterUserService } from '../../services';
 
 import { Container, Button } from './styles';
 
 const Register = (): JSX.Element => {
+  const history = useHistory();
+
+  const [hasError, setHasError] = useState(true);
+
   const { values, errors, changeValues } = useForm({
     initialValues: {
-      user: '',
+      username: '',
       password: '',
       confirmPassword: '',
     },
     scheme: yup.object().shape({
-      user: yup.string().required('Campo obrigatório'),
+      username: yup.string().required('Campo obrigatório'),
       password: yup
         .string()
         .matches(
-          /(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?&])[a-z\d@$!%*#?&]/,
+          /(?=.*[a-z])(?=.*\d)(?=.*[@$!%*#?.&])[a-z\d@$!%*#?.&]/,
           'Deve conter ao menos um caractere especial, um número e uma letra'
         )
         .min(8, 'Deve ter no mínimo 8 caracteres')
@@ -29,18 +37,42 @@ const Register = (): JSX.Element => {
     }),
   });
 
+  useEffect(() => {
+    setHasError(
+      !!errors.confirmPassword || !!errors.password || !!errors.confirmPassword
+    );
+  }, [errors]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    if (hasError) {
+      return;
+    }
+
+    const service = new RegisterUserService();
+
+    const user: User = {
+      username: values.username,
+      password: values.password,
+    };
+
+    service.register(user);
+    history.push('/leads');
+  };
+
   return (
     <Container>
-      <form>
+      <form onSubmit={handleSubmit}>
         <img
           src="https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg"
           alt="elogroup"
         />
         <Input
           type="text"
-          name="user"
+          name="username"
           label="Usuário *"
-          error={errors.user}
+          error={errors.username}
           onChange={changeValues}
         />
         <Input
