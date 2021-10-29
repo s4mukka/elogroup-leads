@@ -1,6 +1,6 @@
 import Routes from './Routes';
 
-import { GlobalStyles } from './styles';
+import { GlobalStyles } from '../styles';
 
 const App = (): JSX.Element => (
   <>

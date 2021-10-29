@@ -4,12 +4,16 @@ import * as yup from 'yup';
 
 import { Input } from '../../components';
 import { User } from '../../domain/models';
+import { RegisterUser } from '../../domain/usecases';
 import { useForm } from '../../hooks';
-import { RegisterUserService } from '../../services';
 
 import { Container, Button } from './styles';
 
-const Register = (): JSX.Element => {
+type RegisterProps = {
+  service: RegisterUser;
+};
+
+const Register = ({ service }: RegisterProps): JSX.Element => {
   const history = useHistory();
 
   const [hasError, setHasError] = useState(true);
@@ -49,8 +53,6 @@ const Register = (): JSX.Element => {
     if (hasError) {
       return;
     }
-
-    const service = new RegisterUserService();
 
     const user: User = {
       username: values.username,
