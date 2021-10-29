@@ -24,7 +24,7 @@ export const Container = styled.div`
     }
 
     button {
-      margin: 0 16px;
+      margin: 16px 16px 0;
     }
   }
 `;

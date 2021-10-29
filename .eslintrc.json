@@ -72,7 +72,8 @@
       "react-hooks/exhaustive-deps":"warn",
       "import/prefer-default-export":"off",
       "react/prop-types":"off",
-      "object-curly-newline": "off"
+      "object-curly-newline": "off",
+      "@typescript-eslint/no-explicit-any": "off"
    },
    "settings":{
       "import/resolver":{

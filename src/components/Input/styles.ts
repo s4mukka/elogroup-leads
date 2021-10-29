@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  position: relative;
+
   width: 300px;
 
   display: flex;
@@ -17,5 +19,17 @@ export const Container = styled.div`
     height: 32px;
 
     border: 1px solid #000;
+  }
+
+  span {
+    position: absolute;
+
+    top: 100%;
+    left: 4px;
+
+    font-size: 12px;
+    line-height: 12px;
+
+    color: #f33;
   }
 `;
