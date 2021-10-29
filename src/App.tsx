@@ -1,3 +1,12 @@
-const App = (): JSX.Element => <h1>Hello World</h1>;
+import Routes from './Routes';
+
+import { GlobalStyles } from './styles';
+
+const App = (): JSX.Element => (
+  <>
+    <GlobalStyles />
+    <Routes />
+  </>
+);
 
 export default App;
