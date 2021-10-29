@@ -1,11 +1,12 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-import { Register } from './views';
+import { Register, Leads } from './views';
 
 const Routes = (): JSX.Element => (
   <BrowserRouter>
     <Switch>
-      <Route path="/" component={Register} />
+      <Route path="/" exact component={Register} />
+      <Route path="/leads" exact component={Leads} />
     </Switch>
   </BrowserRouter>
 );
