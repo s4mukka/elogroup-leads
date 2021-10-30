@@ -27,7 +27,11 @@ export default createGlobalStyle`
         list-style: none;
     }
 
-    button {
+    a {
+        text-decoration: none;
+    }
+
+    button, a {
         cursor: pointer;
 
         transition: all 0.2s;
@@ -35,5 +39,10 @@ export default createGlobalStyle`
         &:hover {
             filter: brightness(0.9);
         }
+    }
+
+    table, th, td {
+        border: 2px solid #000;
+        border-collapse: collapse;
     }
 `;
