@@ -28,6 +28,8 @@ const Leads = ({ service }: LeadsProps): JSX.Element => {
         dragged.status = status;
       })
     );
+
+    service.update(index, status);
   };
 
   return (

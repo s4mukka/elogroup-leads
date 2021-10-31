@@ -1,7 +1,7 @@
 import { Lead } from '../domain/models';
-import { AddLead, LoadLeads } from '../domain/usecases';
+import { AddLead, LoadLeads, UpdateLead } from '../domain/usecases';
 
-export class LeadService implements AddLead, LoadLeads {
+export class LeadService implements AddLead, LoadLeads, UpdateLead {
   add = (lead: Lead): void => {
     const listLeads = this.load();
 
@@ -14,5 +14,13 @@ export class LeadService implements AddLead, LoadLeads {
     const listLeads = localStorage.getItem('listLeads');
 
     return listLeads ? JSON.parse(listLeads) : [];
+  };
+
+  update = (index: number, status: Lead['status']): void => {
+    const listLeads = this.load();
+
+    listLeads[index].status = status;
+
+    localStorage.setItem('listLeads', JSON.stringify(listLeads));
   };
 }
