@@ -1,9 +1,13 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+type ContainerProps = {
+  type: string;
+};
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
 
-  width: 300px;
+  width: ${(props) => (props.type === 'checkbox' ? 'unset' : '300px')};
 
   display: flex;
   flex-direction: column;
@@ -16,7 +20,7 @@ export const Container = styled.div`
   input {
     padding: 0 8px;
 
-    height: 32px;
+    height: ${(props) => (props.type === 'checkbox' ? 'unset' : '32px')};
 
     border: 1px solid #000;
   }

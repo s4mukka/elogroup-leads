@@ -40,9 +40,4 @@ export default createGlobalStyle`
             filter: brightness(0.9);
         }
     }
-
-    table, th, td {
-        border: 2px solid #000;
-        border-collapse: collapse;
-    }
 `;

@@ -4,8 +4,9 @@ import { Container } from './styles';
 
 type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   name: string;
-  label: string;
-  error: string;
+  type: string;
+  label?: string;
+  error?: string;
 };
 
 const Input = ({
@@ -15,8 +16,8 @@ const Input = ({
   error,
   ...rest
 }: InputProps): JSX.Element => (
-  <Container>
-    <label htmlFor={name}>{label}</label>
+  <Container type={type}>
+    {label && <label htmlFor={name}>{label}</label>}
     <input id={name} name={name} type={type} {...rest} autoComplete="off" />
     {error && <span>{error}</span>}
   </Container>

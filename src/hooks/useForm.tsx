@@ -1,12 +1,13 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import * as yup from 'yup';
 
-type Retorno<T> = {
+type Return<T> = {
   values: T;
   changeValues: (
     event: ChangeEvent<HTMLInputElement & HTMLSelectElement>
   ) => void;
   errors: Error<T>;
+  setValue: (fieldName: string, value: any) => void;
 };
 
 type Props<T> = {
@@ -21,7 +22,7 @@ type Error<T> = {
 export default function useForm<T = any>({
   initialValues,
   scheme,
-}: Props<T>): Retorno<T> {
+}: Props<T>): Return<T> {
   const [values, setValues] = useState<T>(initialValues);
   const [errors, setErrors] = useState<Error<T>>({} as Error<T>);
 
@@ -45,21 +46,29 @@ export default function useForm<T = any>({
     };
     }, [values]); // eslint-disable-line
 
-  function changeValues(
+  const changeValues = (
     event: ChangeEvent<HTMLInputElement & HTMLSelectElement>
-  ): void {
+  ): void => {
     const fieldName = event.target.getAttribute('name') as string;
-    const { value } = event.target;
+    const { value, checked, type } = event.target;
 
+    setValues((oldValues) => ({
+      ...oldValues,
+      [fieldName]: type === 'checkbox' ? checked : value,
+    }));
+  };
+
+  const setValue = (fieldName: string, value: any): void => {
     setValues((oldValues) => ({
       ...oldValues,
       [fieldName]: value,
     }));
-  }
+  };
 
   return {
     values,
     changeValues,
     errors,
+    setValue,
   };
 }

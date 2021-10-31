@@ -1,22 +1,17 @@
-import { List } from '../../components';
+import { Header, List } from '../../components';
+import { Layout } from '../../styles';
 
-import { Container, Button } from './styles';
+import { Button } from './styles';
 
 const Leads = (): JSX.Element => {
   return (
-    <Container>
-      <header>
-        <img
-          src="https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg"
-          alt="elogroup"
-        />
-        <h1>Painel de Leads</h1>
-      </header>
+    <Layout>
+      <Header title="Painel de Leads" />
 
       <Button to="/leads/new">Novo Lead (+)</Button>
 
       <List />
-    </Container>
+    </Layout>
   );
 };
 

@@ -69,9 +69,10 @@
          }
       ],
       "react-hooks/rules-of-hooks":"error",
-      "react-hooks/exhaustive-deps":"warn",
+      "react-hooks/exhaustive-deps":"off",
       "import/prefer-default-export":"off",
       "react/prop-types":"off",
+      "react/require-default-props": "off",
       "object-curly-newline": "off",
       "@typescript-eslint/no-explicit-any": "off",
       "import/no-extraneous-dependencies": "off"
