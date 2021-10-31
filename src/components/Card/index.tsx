@@ -25,9 +25,9 @@ const Card = ({ lead, defaultStatus, index }: CardProps): JSX.Element => {
   const { move } = useList();
 
   const [{ isDragging }, dragRef] = useDrag({
-    type: 'CARD',
+    type: defaultStatus === lead.status ? 'CARD' : 'EMPTY',
     item: {
-      type: 'CARD',
+      type: defaultStatus === lead.status ? 'CARD' : 'EMPTY',
       lead,
       index,
       defaultStatus,
