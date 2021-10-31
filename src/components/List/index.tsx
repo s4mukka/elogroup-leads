@@ -8,6 +8,12 @@ type ListProps = {
 };
 
 const List = ({ listLeads }: ListProps): JSX.Element => {
+  const statusArray: Lead['status'][] = [
+    'potentialCustomer',
+    'confirmedData',
+    'scheduledMeeting',
+  ];
+
   return (
     <Container>
       <thead>
@@ -19,17 +25,16 @@ const List = ({ listLeads }: ListProps): JSX.Element => {
       </thead>
 
       <tbody>
-        {listLeads.map((lead) => (
-          <tr key={`${lead.name}-${Math.random()}`}>
-            <Card
-              content={lead.name}
-              empty={lead.status !== 'potentialCustomer'}
-            />
-            <Card content={lead.name} empty={lead.status !== 'confirmedData'} />
-            <Card
-              content={lead.name}
-              empty={lead.status !== 'scheduledMeeting'}
-            />
+        {listLeads.map((lead, index) => (
+          <tr key={`${lead.name}`}>
+            {statusArray.map((card) => (
+              <Card
+                key={`${lead.name}-${card}`}
+                lead={lead}
+                index={index}
+                defaultStatus={card}
+              />
+            ))}
           </tr>
         ))}
       </tbody>
