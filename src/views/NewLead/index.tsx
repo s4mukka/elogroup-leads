@@ -1,12 +1,26 @@
-import { useEffect } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import toast from 'react-hot-toast';
+import * as yup from 'yup';
+
 import { Header, Input } from '../../components';
+import { Lead } from '../../domain/models';
 import { useForm } from '../../hooks';
+import { LeadService } from '../../services';
 import { Table } from '../../styles';
 
 import { Button, Container } from './styles';
 
-const NewLead = (): JSX.Element => {
-  const { values, changeValues, setValue } = useForm({
+type NewLeadProps = {
+  service: LeadService;
+};
+
+const NewLead = ({ service }: NewLeadProps): JSX.Element => {
+  const history = useHistory();
+
+  const [hasError, setHasError] = useState(false);
+
+  const { values, changeValues, setValue, errors } = useForm({
     initialValues: {
       name: '',
       phone: '',
@@ -17,6 +31,11 @@ const NewLead = (): JSX.Element => {
       analytics: false,
       rpm: false,
     },
+    scheme: yup.object().shape({
+      name: yup.string().required('Campo obrigatório!'),
+      phone: yup.string().required('Campo obrigatório!'),
+      email: yup.string().required('Campo obrigatório!'),
+    }),
   });
 
   useEffect(() => {
@@ -26,31 +45,61 @@ const NewLead = (): JSX.Element => {
     setValue('rpm', values.all);
   }, [values.all]);
 
+  useEffect(() => {
+    setHasError(!!errors.name || !!errors.phone || !!errors.email);
+  }, [errors]);
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
+    event.preventDefault();
+
+    if (hasError) {
+      return;
+    }
+
+    const lead: Lead = {
+      name: values.name,
+      email: values.email,
+      phone: values.phone,
+      opportunities: {
+        rpa: values.rpa,
+        analytics: values.analytics,
+        digitalProduct: values.digitalProduct,
+        rpm: values.rpm,
+      },
+      status: 'potentialCustomer',
+    };
+
+    service.add(lead);
+    toast.success('Lead adicionada com sucesso!');
+
+    history.push('/leads');
+  };
+
   return (
     <Container>
       <Header title="Novo Lead" />
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <Input
             type="text"
             name="name"
             label="Nome *"
-            error=""
+            error={errors.name}
             onChange={changeValues}
           />
           <Input
             type="text"
             name="phone"
             label="Telefone *"
-            error=""
+            error={errors.phone}
             onChange={changeValues}
           />
           <Input
             type="email"
             name="email"
             label="Email *"
-            error=""
+            error={errors.email}
             onChange={changeValues}
           />
         </div>

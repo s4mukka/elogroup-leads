@@ -4,13 +4,13 @@ import * as yup from 'yup';
 
 import { Input } from '../../components';
 import { User } from '../../domain/models';
-import { RegisterUser } from '../../domain/usecases';
 import { useForm } from '../../hooks';
+import { UserService } from '../../services';
 
 import { Container, Button } from './styles';
 
 type RegisterProps = {
-  service: RegisterUser;
+  service: UserService;
 };
 
 const Register = ({ service }: RegisterProps): JSX.Element => {
