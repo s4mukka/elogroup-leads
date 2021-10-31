@@ -1,8 +1,13 @@
+import { Lead } from '../../domain/models';
 import Card from '../Card';
 
 import { Container, Title } from './styles';
 
-const List = (): JSX.Element => {
+type ListProps = {
+  listLeads: Lead[];
+};
+
+const List = ({ listLeads }: ListProps): JSX.Element => {
   return (
     <Container>
       <thead>
@@ -14,16 +19,19 @@ const List = (): JSX.Element => {
       </thead>
 
       <tbody>
-        <tr>
-          <Card content="Org. Internacionais" empty={false} />
-          <Card content="Org. Internacionais" empty />
-          <Card content="Org. Internacionais" empty />
-        </tr>
-        <tr>
-          <Card content="Ind. Farm. LTDA" empty />
-          <Card content="Ind. Farm. LTDA" empty={false} />
-          <Card content="Ind. Farm. LTDA" empty />
-        </tr>
+        {listLeads.map((lead) => (
+          <tr key={`${lead.name}-${Math.random()}`}>
+            <Card
+              content={lead.name}
+              empty={lead.status !== 'potentialCustomer'}
+            />
+            <Card content={lead.name} empty={lead.status !== 'confirmedData'} />
+            <Card
+              content={lead.name}
+              empty={lead.status !== 'scheduledMeeting'}
+            />
+          </tr>
+        ))}
       </tbody>
     </Container>
   );

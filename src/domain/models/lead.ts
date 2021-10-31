@@ -8,5 +8,5 @@ export type Lead = {
     analytics: boolean;
     rpm: boolean;
   };
-  status: 'potentialCustomer' | 'confirmedData' | 'scheduled meeting';
+  status: 'potentialCustomer' | 'confirmedData' | 'scheduledMeeting';
 };
