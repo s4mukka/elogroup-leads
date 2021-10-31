@@ -13,7 +13,7 @@ Tabela de conteúdos<a name="content-table"></a>
 * [Tabela de Contuedo](#content-table)
 * [Pré Requisitos](#prerequisite)
 * [Rodando a Aplicação](#runningapp)
-* [Tecnologias](#tecnlogies)
+* [Tecnologias](#tecnologies)
 
 ### Pré requisitos<a name="prerequisite"></a>
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
@@ -36,7 +36,7 @@ $ yarn start
 # A aplicação iniciará na porta 3000 - acesse <localhost:3000>
 ```
 
-### Tecnologias
+### Tecnologias<a name="tecnologies"></a>
 As seguintes ferramentas foram usadas na construção do projeto:
 - [Node.js](https://nodejs.org/en/)
 - [React](https://pt-br.reactjs.org/)
