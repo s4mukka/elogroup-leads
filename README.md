@@ -1,7 +1,7 @@
 ![alt text](https://elogroup.com.br/wp-content/uploads/2021/08/Logo-2.svg "EloGroup")
 
-# Processo Seletivo Elogroup - Leads
-## Aplicação feita para o processo seletivo da Elogroup<a name="about"></a>
+# Processo Seletivo Elogroup - Leads<a name="about"></a>
+Aplicação feita para o processo seletivo da Elogroup
 
 ![Badge](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
