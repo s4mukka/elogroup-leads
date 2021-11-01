@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 export const Table = styled.table`
   border-collapse: collapse;
@@ -21,4 +21,14 @@ export const Table = styled.table`
   tbody tr:nth-child(odd) {
     background-color: #dddddd;
   }
+`;
+
+export const Button = css`
+  height: 56px;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

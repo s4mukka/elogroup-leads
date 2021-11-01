@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { Button as BaseButton } from '../../styles';
+
 export const Container = styled.div`
   width: 100%;
   height: 100%;
@@ -30,10 +32,9 @@ export const Container = styled.div`
 `;
 
 export const Button = styled.button`
-  width: calc(100% - 32px);
-  height: 56px;
+  ${BaseButton}
 
-  font-size: 16px;
+  width: calc(100% - 32px);
 
   background: #fff;
 

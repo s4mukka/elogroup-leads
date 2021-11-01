@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { Layout } from '../../styles';
+import { Layout, Button as BaseButton } from '../../styles';
 
 export const Container = styled(Layout)`
   form {
@@ -57,20 +57,15 @@ export const Container = styled(Layout)`
 `;
 
 export const Button = styled.button`
+  ${BaseButton}
+
   margin-top: 24px;
 
   width: 566px;
-  height: 56px;
-
-  font-size: 18px;
 
   color: #fff;
 
   background: #0af;
 
   border: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
