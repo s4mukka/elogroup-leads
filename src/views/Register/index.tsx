@@ -1,4 +1,5 @@
 import { FormEvent, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useHistory } from 'react-router';
 import * as yup from 'yup';
 
@@ -60,6 +61,7 @@ const Register = ({ service }: RegisterProps): JSX.Element => {
     };
 
     service.register(user);
+    toast.success(`Bem vindo ${user.username}`);
     history.push('/leads');
   };
 
