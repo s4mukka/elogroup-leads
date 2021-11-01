@@ -34,7 +34,10 @@ const NewLead = ({ service }: NewLeadProps): JSX.Element => {
     scheme: yup.object().shape({
       name: yup.string().required('Campo obrigatório!'),
       phone: yup.string().required('Campo obrigatório!'),
-      email: yup.string().required('Campo obrigatório!'),
+      email: yup
+        .string()
+        .email('Email inválido! (name@example.com)')
+        .required('Campo obrigatório!'),
     }),
   });
 
