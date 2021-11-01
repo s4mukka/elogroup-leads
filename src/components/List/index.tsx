@@ -1,7 +1,7 @@
 import { Lead } from '../../domain/models';
 import Card from '../Card';
 
-import { Container, Title } from './styles';
+import { Container, Title, Message } from './styles';
 
 type ListProps = {
   listLeads: Lead[];
@@ -23,6 +23,10 @@ const List = ({ listLeads }: ListProps): JSX.Element => {
           <Title>Reunião Agendada</Title>
         </tr>
       </thead>
+
+      {!listLeads.length && (
+        <Message>Ainda não tem nenhuma Lead cadastrada</Message>
+      )}
 
       <tbody>
         {listLeads.map((lead, index) => (
